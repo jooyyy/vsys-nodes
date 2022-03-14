@@ -1,0 +1,124 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "service doc",
+        "title": "vsys nodes health service doc",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "joy",
+            "url": "https://github.com/jooyyy",
+            "email": "joy060102@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "paths": {
+        "/api/node/:network": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Nodes"
+                ],
+                "summary": "Get node by network type",
+                "responses": {
+                    "200": {
+                        "description": "return an active node url",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/server.RespJsonObj"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/node/all": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Nodes"
+                ],
+                "summary": "Get all nodes information",
+                "responses": {
+                    "200": {
+                        "description": "return an active node url",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/server.Node"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/server.RespJsonObj"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "server.Node": {
+            "type": "object",
+            "properties": {
+                "height": {
+                    "type": "integer"
+                },
+                "network": {
+                    "type": "string"
+                },
+                "note": {
+                    "type": "string"
+                },
+                "point": {
+                    "type": "integer"
+                },
+                "time_since_now": {
+                    "type": "string"
+                },
+                "timestamp": {
+                    "type": "integer"
+                },
+                "url": {
+                    "type": "string"
+                },
+                "weight": {
+                    "type": "integer"
+                }
+            }
+        },
+        "server.RespJsonObj": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "data": {
+                    "type": "object"
+                },
+                "msg": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
